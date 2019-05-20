@@ -5,11 +5,13 @@ ENV TOMCAT_MAJOR_VERSION=8
 ENV TOMCAT_VERSION=8.0.50
 ENV TOMCAT_HOME=/opt/apache-tomcat-$TOMCAT_VERSION
 
-# Install Java 8
-RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list
-RUN echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list
-RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 && apt-get update && apt-get install -y curl dnsutils oracle-java8-installer ca-certificates
+# Install Java 11
+RUN echo "deb http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main" | tee /etc/apt/sources.list.d/linuxuprising-java.list
+RUN echo "deb-src http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main" | tee /etc/apt/sources.list.d/linuxuprising-java.list
+RUN echo oracle-java11-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 73C3DB2A && apt-get update && apt-get install -y curl dnsutils oracle-java11-installer ca-certificates
+
+
 
 # Install mysql-server and tomcat 8
 RUN apt-get update && apt-get install -y lsb-release && \
