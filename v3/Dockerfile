@@ -7,9 +7,9 @@ ENV TOMCAT_HOME=/opt/apache-tomcat-$TOMCAT_VERSION
 
 # Install Java 11
 RUN echo "deb http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main" | tee /etc/apt/sources.list.d/linuxuprising-java.list
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 73C3DB2A
-RUN apt-get update
-RUN apt-get install -y curl dnsutils oracle-java11-installer ca-certificates
+RUN echo "deb-src http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main" | tee /etc/apt/sources.list.d/linuxuprising-java.list
+RUN echo oracle-java11-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 73C3DB2A && apt-get update && apt-get install -y curl dnsutils oracle-java11-installer ca-certificates
 
 
 
