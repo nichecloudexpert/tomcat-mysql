@@ -1,0 +1,1 @@
+mysql -u admin -p $MYSQL_PASS -e 'CREATE DATABASE demo CHARACTER SET UTF8'
