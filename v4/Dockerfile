@@ -1,6 +1,6 @@
 # Centos based container with Java and Tomcat
 FROM centos:centos7
-MAINTAINER kirillf
+
 
 # Install prepare infrastructure
 RUN yum -y update && \
@@ -13,12 +13,13 @@ ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin:$CATALINA_HOME/scripts
 
 # Install Oracle Java8
-ENV JAVA_VERSION 8u191
-ENV JAVA_BUILD 8u191-b12
-ENV JAVA_DL_HASH 2787e4a523244c269598db4e85c51e0c
+ENV JAVA_VERSION 11.0.3
+ENV JAVA_BUILD 11.0.3+12
+ENV JAVA_DL_HASH 37f5e150db5247ab9333b11c1dddcd30
+
 
 RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
- http://download.oracle.com/otn-pub/java/jdk/${JAVA_BUILD}/${JAVA_DL_HASH}/jdk-${JAVA_VERSION}-linux-x64.tar.gz && \
+ http://download.oracle.com/otn/java/jdk/${JAVA_BUILD}/${JAVA_DL_HASH}/jdk-${JAVA_VERSION}_linux_x64.tar.gz && \
  tar -xvf jdk-${JAVA_VERSION}-linux-x64.tar.gz && \
  rm jdk*.tar.gz && \
  mv jdk* ${JAVA_HOME}
