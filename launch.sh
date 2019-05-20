@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /openjdk11-alpine
+cd /openjdk11
 sleep 5
 docker build -t openjdk11-alpine:v1 .
 cd ..
